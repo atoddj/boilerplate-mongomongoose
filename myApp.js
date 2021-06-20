@@ -70,10 +70,7 @@ const queryChain = (done) => {
   .sort({name: 1})
   .select({age: 0})
   .limit(2)
-  .exec((err, docs) => {
-    if(err) return console.error(err);
-    return done(null, docs);
-  });
+  .exec((err, docs) => (err ? console.error(err) : done(null, docs)));
 };
 
 /** **Well Done !!**
