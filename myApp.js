@@ -38,10 +38,10 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.findById({_id: personId}, (err, docs) => {
+  Person.findById({_id: personId}, (err, person) => {
     if(err) return console.error(err);
-    docs.favoriteFoods.push(foodtoAdd);
-    docs.save((err,updatedPerson) => (err ? console.error(err) : done(null, updatedPerson)));
+    person.favoriteFoods = [...person.favoriteFoods, foodToAdd];
+    person.save((err,updatedPerson) => (err ? console.error(err) : done(null, updatedPerson)));
   });
 };
 
